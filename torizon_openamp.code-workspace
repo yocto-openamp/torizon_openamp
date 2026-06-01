@@ -4,8 +4,8 @@
 			"path": "."
 		},
 		{
-			"name": "projectxy-meta",
-			"path": "yocto-workdir/layers/meta-projectxy"
+			"name": "productxy-meta",
+			"path": "yocto-workdir/layers/meta-productxy"
 		}
 	],
 	"settings": {

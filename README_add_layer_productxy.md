@@ -15,19 +15,19 @@ Follow [meta-layers](https://developer.toradex.com/linux-bsp/os-development/buil
 
 ```bash
 source setup-environment
-bitbake-layers create-layer ../layers/meta-projectxy
-# /workdir/torizon/layers/meta-projectxy
+bitbake-layers create-layer ../layers/meta-productxy
+# /workdir/torizon/layers/meta-productxy
 vi conf/bblayers.conf
 or better:
 vi yocto-workdir/layers/meta-toradex-torizon/conf/template/bblayers.conf
   ...
 
 
-$ cd yocto-workdir/layers/meta-projectxy
+$ cd yocto-workdir/layers/meta-productxy
 $ git init
 $ git add .
-$ git commit -m "Initial Commit" -m "Add meta-projectxy from template"
+$ git commit -m "Initial Commit" -m "Add meta-productxy from template"
 git branch -M main
-git remote add origin https://github.com/hmaerki/experiment_torizon_openamp_projectxy.git
+git remote add origin https://github.com/hmaerki/experiment_torizon_openamp_productxy.git
 git push -u origin main
 ```
