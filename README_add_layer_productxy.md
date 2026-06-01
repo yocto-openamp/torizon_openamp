@@ -20,9 +20,12 @@ bitbake-layers create-layer ../layers/meta-productxy
 vi conf/bblayers.conf
 or better:
 vi yocto-workdir/layers/meta-toradex-torizon/conf/template/bblayers.conf
-  ...
+  ...Add to end of file:
+
+  ${OEROOT}/layers/meta-productxy \
 
 
+# Variant: Create new meta-productxy
 $ cd yocto-workdir/layers/meta-productxy
 $ git init
 $ git add .
@@ -30,4 +33,9 @@ $ git commit -m "Initial Commit" -m "Add meta-productxy from template"
 git branch -M main
 git remote add origin https://github.com/hmaerki/experiment_torizon_openamp_productxy.git
 git push -u origin main
+
+# Variant: checkout existing meta-productxy
+$ cd yocto-workdir/layers
+$ rm -r meta-productxy
+$ git clone https://github.com/hmaerki/experiment_torizon_openamp_productxy meta-productxy
 ```
