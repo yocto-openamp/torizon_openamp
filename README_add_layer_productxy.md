@@ -18,7 +18,7 @@ source setup-environment
 bitbake-layers create-layer ../layers/meta-productxy
 # /workdir/torizon/layers/meta-productxy
 vi conf/bblayers.conf
-or better:
+or persistent:
 vi yocto-workdir/layers/meta-toradex-torizon/conf/template/bblayers.conf
   ...Add to end of file:
 
@@ -38,4 +38,16 @@ git push -u origin main
 $ cd yocto-workdir/layers
 $ rm -r meta-productxy
 $ git clone https://github.com/hmaerki/experiment_torizon_openamp_productxy meta-productxy
+```
+
+## Build
+
+```bash
+startup-tdx.sh
+```
+
+or
+
+```bash
+time bitbake torizon-docker
 ```
