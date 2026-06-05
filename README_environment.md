@@ -156,8 +156,9 @@ docker run --rm -it \
 Create and activate a Python virtual environment for Zephyr tooling:
 
 ```bash
-mkdir -p "$(pwd)/zephyr"
-cd "$(pwd)/zephyr"
+export ZEPHYR_TOP=$HOME
+mkdir -p "$ZEPHYR_TOP/zephyr"
+cd "$ZEPHYR_TOP/zephyr"
 uv venv
 source .venv/bin/activate
 uv pip install west
@@ -166,16 +167,17 @@ uv pip install west
 Initialize Zephyr workspace:
 
 ```bash
-west init -m https://github.com/zephyrproject-rtos/zephyr --mr v3.7.0 $(pwd)/zephyr/zephyrproject
-cd $(pwd)/zephyr/zephyrproject
+west init -m https://github.com/zephyrproject-rtos/zephyr --mr v3.7.0 $ZEPHYR_TOP/zephyr/zephyrproject
+cd $ZEPHYR_TOP/zephyr/zephyrproject
 west update
+# Add Zephyr entry to: ~/.cmake/packages/Zephyr
 west zephyr-export
 uv pip install -r zephyr/scripts/requirements.txt
 ```
 
-Install Zephyr SDK (pick one method):
+### Install Zephyr SDK (pick one method):
 
-- Package manager / distro package, or
+#### Package manager / distro package
 
   ```bash
   # Download and install Zephyr SDK 0.16.8
@@ -189,7 +191,7 @@ Install Zephyr SDK (pick one method):
   echo 'export ZEPHYR_SDK_INSTALL_DIR="$HOME/zephyr-sdk-0.16.8"' >> ~/.bashrc
   ```
 
-- Official Zephyr SDK installer from docs.
+#### Official Zephyr SDK installer from docs
 
 Set SDK variables (example):
 
@@ -203,17 +205,23 @@ Persist environment (optional):
 echo 'export ZEPHYR_SDK_INSTALL_DIR="$HOME/toolchains/zephyr-sdk"' >> ~/.bashrc
 ```
 
+#### west
+
+```bash
+west sdk install
+```
+
 ## 5) Toolchain and Build Sanity Checks
 
 Run these checks before starting Phase 2 builds:
 
 ```bash
 # Docker
- docker --version
- docker run --rm hello-world
+docker --version
+docker run --rm hello-world
 
 # Zephyr tooling
-source "$(pwd)/zephyr/.venv/bin/activate"
+source "$ZEPHYR_TOP/zephyr/.venv/bin/activate"
 west --version
 cmake --version
 ninja --version
@@ -223,12 +231,12 @@ python3 --version
 Optional quick Zephyr test build (replace board as needed):
 
 ```bash
-cd "$(pwd)/zephyr/zephyrproject/zephyr"
+cd "$ZEPHYR_TOP/zephyr/zephyrproject/zephyr"
 west build -b reel_board samples/basic/blinky
 ```
 
 ```bash
-ls -lh $(pwd)/zephyr/zephyrproject/zephyr/build/zephyr/zephyr.elf
+ls -lh $ZEPHYR_TOP/zephyr/zephyrproject/zephyr/build/zephyr/zephyr.elf
 770k
 ```
 
