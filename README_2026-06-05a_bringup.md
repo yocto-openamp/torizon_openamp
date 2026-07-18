@@ -10,6 +10,9 @@ In this document:
 * [Mallow](https://developer.toradex.com/hardware/verdin-som-family/carrier-boards/mallow-carrier-board/)
 * [Connectors](https://www.toradex.com/products/carrier-board/mallow-carrier-board#features)
 * https://docs.toradex.com/113763-mallow-v1.1-assembly-drawing.zip
+* https://developer.toradex.com/easy-installer/toradex-easy-installer/download-tezi
+
+* 0063 Verdin iMX8M Plus Quad 4GB IT, V1.1C, S/N 08910183
 
 * X9 2xUSB-A: Plug a USB keyboard/mouse into the Mallow Carrier Board's USB 3.x Host (X9) connector(s).
 
@@ -27,18 +30,25 @@ In this document:
 * connect, torizon/torizon
 * ssh torizon@verdin-imx8mp-08910183.local
 
-## Connect HDMI
 
-* Toradex Easy Install 5.7.3 -> 7.6.1
-* 0063 Verdin iMX8M Plus Quad 4GB IT, V1.1C, S/N 08910183
+### Prepare USB stick
+
+* PC: Plug USB (format as ext4, label `torizon`)
+
+```bash
+$ sudo rm -r /media/maerki/torizon/*
+$ ssh octoprobe@octoprobe4.local cat /home/octoprobe/work_beampilot/experiment_torizon_openamp/yocto-workdir/build-torizon/deploy/images/verdin-imx8mp/torizon-docker-verdin-imx8mp-Tezi.tar | tar sudo -C /media/maerki/torizon/ -xf -
+$ eject /media/maerki/torizon
+```
 
 ## USB Recovery Mode
 
 * Power off
-* Connect USB C to the PC
-* Connect X16 pin1(GND) with pin2(CTRL_RECOVERY_MICO)
+* Plug in USB Stick
+* Connect: X16 pin1(GND) with pin2(CTRL_RECOVERY_MICO)
   * https://docs.toradex.com/117250-mallow_carrier_board_recovery_mode.mp4
   * [mallow loading-tezi ](https://developer.toradex.com/easy-installer/toradex-easy-installer/loading-toradex-easy-installer/?module=verdin_imx8mp&carrier=mallow#3-loading-tezi)
+* Power on
 
 ```text
 usb 3-7: new high-speed USB device number 31 using xhci_hcd
@@ -58,35 +68,11 @@ Connected Known USB Devices
 	Path	 Chip	 Pro	 Vid	 Pid	 BcdVersion	 Serial_no
 	====================================================================
 	3:7	 MX865	 SDPS:	 0x1FC9	0x0146	 0x0002	 120D28005D669B2A
-```
 
-
-### Prepare USB
-
-* PC: Plug USB (format as ext4, label `torizon`)
-
-```bash
-$ sudo rm -r /media/maerki/torizon/*
-$ ssh octoprobe@octoprobe4.local cat /home/octoprobe/work_beampilot/experiment_torizon_openamp/yocto-workdir/build-torizon/deploy/images/verdin-imx8mp/torizon-docker-verdin-imx8mp-Tezi.tar | tar sudo -C /media/maerki/torizon/ -xf -
-$ eject /media/maerki/torizon
-```
-
-### Run Toradex Easy Installer
-
-* Connect HDMI and Mouse
-* Connect USB-C with PC
-* Plug in USB Stick
-* Connect: X16 pin1(GND) with pin2(CTRL_RECOVERY_MICO)
-* Power on
-
-```bash
 $ lsusb
 ID 1fc9:0146 NXP Semiconductors SE Blank 865  
-```
 
-https://developer.toradex.com/easy-installer/toradex-easy-installer/download-tezi
-
-```bash
+$ mkdir -p /tmp/torizon; cd /tmp/torizon
 $ wget https://tezi.toradex.com/artifactory/tezi-oe-prod-frankfurt/scarthgap-7.x.y/release/12/verdin-imx8mp/tezi/tezi-run/oedeploy/Verdin-iMX8MP_ToradexEasyInstaller_7.6.1+build.12.zip
 $ unzip Verd*.zip
 $ cd Verd*
@@ -99,9 +85,10 @@ Success 1    Failure 0
 Successfully downloaded Toradex Easy Installer.
 ```
 
-* On monitor: Toradex Easy Installer
-  * Select Torizon OS -> Install -> Yes -> I Accept
-  * Power off
-  * Remove: X16 pin1(GND) with pin2(CTRL_RECOVERY_MICO)
-  * Disconnect USB-C - Important
-  * Disconnect USB Stick
+* gvncviewer 192.168.11.1 
+  * On VNC/monitor: Toradex Easy Installer
+    * Select Torizon OS -> Install -> Yes -> I Accept
+    * Power off
+    * Remove: X16 pin1(GND) with pin2(CTRL_RECOVERY_MICO)
+    * Disconnect USB-C - Important
+    * Disconnect USB Stick

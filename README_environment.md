@@ -180,16 +180,33 @@ uv pip install -r zephyr/scripts/requirements.txt
 #### Package manager / distro package
 
   ```bash
-  # Download and install Zephyr SDK 0.16.8
+  # Download and install Zephyr SDK 0.16.9
   cd ~
-  wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.8/zephyr-sdk-0.16.8_linux-x86_64.tar.xz
-  tar xf zephyr-sdk-0.16.8_linux-x86_64.tar.xz
-  cd zephyr-sdk-0.16.8
+  # wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.8/zephyr-sdk-0.16.8_linux-x86_64.tar.xz
+  # tar xf zephyr-sdk-0.16.8_linux-x86_64.tar.xz
+  # PC
+  curl -L https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.8/zephyr-sdk-0.16.8_linux-x86_64.tar.xz | tar -xJf -
+  # Toradex
+  curl -L https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.8/zephyr-sdk-0.16.8_linux-aarch64.tar.xz | tar -xJf -
+  cd zephyr-sdk-0.16.9
   ./setup.sh -t arm-zephyr-eabi   # Cortex-M7 only; use -t all for all toolchains
 
-  export ZEPHYR_SDK_INSTALL_DIR="$HOME/zephyr-sdk-0.16.8"
-  echo 'export ZEPHYR_SDK_INSTALL_DIR="$HOME/zephyr-sdk-0.16.8"' >> ~/.bashrc
+  export ZEPHYR_SDK_INSTALL_DIR="$HOME/zephyr-sdk-0.16.9"
+  echo 'export ZEPHYR_SDK_INSTALL_DIR="$HOME/zephyr-sdk-0.16.9"' >> ~/.bashrc
   ```
+
+#### Newes version
+
+  ```bash
+  # Download and install Zephyr SDK 0.16.9
+  cd ~
+  curl -L https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v1.0.1/zephyr-sdk-1.0.1_linux-aarch64_llvm.tar.xz | tar -xJf -
+  cd zephyr-sdk-1.0.1
+  ./setup.sh -t arm-zephyr-eabi   # Cortex-M7 only; use -t all for all toolchains
+
+  export ZEPHYR_SDK_INSTALL_DIR="$HOME/zephyr-sdk-1.0.1"
+  echo 'export ZEPHYR_SDK_INSTALL_DIR="$HOME/zephyr-sdk-1.0.1"' >> ~/.bashrc
+```
 
 #### Official Zephyr SDK installer from docs
 
@@ -205,7 +222,7 @@ Persist environment (optional):
 echo 'export ZEPHYR_SDK_INSTALL_DIR="$HOME/toolchains/zephyr-sdk"' >> ~/.bashrc
 ```
 
-#### west
+#### use west to install Zephyr SDK
 
 ```bash
 west sdk install
@@ -228,12 +245,22 @@ ninja --version
 python3 --version
 ```
 
-Optional quick Zephyr test build (replace board as needed):
+Optional quick Zephyr test build for Cortex-M7 firmware:
 
 ```bash
 cd "$ZEPHYR_TOP/zephyr/zephyrproject/zephyr"
 west build -b reel_board samples/basic/blinky
 ```
+
+For Verdin iMX8MP remoteproc validation, do not use the generic `reel_board` sample as the enablement check. Remoteproc appears only when the board boots an i.MX8MP device tree that contains the CM7 remoteproc node, so verify on the target with:
+
+```bash
+ls /sys/class/remoteproc/remoteproc*
+cat /sys/class/remoteproc/remoteproc0/name 2>/dev/null || true
+cat /sys/class/remoteproc/remoteproc0/state 2>/dev/null || true
+```
+
+If no `remoteprocX` device appears, the issue is the booted DT/configuration, not a missing userspace module.
 
 ```bash
 ls -lh $ZEPHYR_TOP/zephyr/zephyrproject/zephyr/build/zephyr/zephyr.elf

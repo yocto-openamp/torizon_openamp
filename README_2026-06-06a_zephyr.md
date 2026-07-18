@@ -1,4 +1,5 @@
 ## Wrong - TI
+
 yocto-workdir/layers/meta-ti/meta-ti-bsp/recipes-bsp/zephyr-fw/zephyr-openamp-rsc-table-fw.bb
 SUMMARY = "Precompiled Zephyr OpenAMP example firmware for TI K3 devices"
 

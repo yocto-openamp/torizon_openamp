@@ -1,7 +1,6 @@
 # Add a layer productxy
 
 ```bash
-```bash
 docker run --rm -it \
   --name=crops \
   -v "$(pwd)/yocto-workdir:/workdir/torizon" \
