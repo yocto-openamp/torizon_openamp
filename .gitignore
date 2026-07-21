@@ -1,3 +1,6 @@
 yocto-workdir/.repo/
 yocto-workdir/
 zephyr/
+mallow_breakout/kicad/mellow_breakout_v0.1/_restore_backup_*
+mallow_breakout/kicad/mellow_breakout_v0.1/.history/
+mallow_breakout/kicad/mellow_breakout_v0.1/*.bak
