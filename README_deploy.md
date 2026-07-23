@@ -42,6 +42,8 @@ Use the [Toradex Easy Installer (Tezi)](https://developer.toradex.com/software/t
    systemctl is-system-running
    ```
 
+# NEXT STEPS DO NOT (?) WORK
+
 ### Step 2: Copy the Zephyr ELF to the target
 
 From the host, copy the Cortex-M7 firmware to the Linux filesystem on the module:

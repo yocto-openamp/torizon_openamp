@@ -12,6 +12,16 @@
 		"files.watcherExclude": {
 			"${workspaceFolder}/yocto-workdir/**": true,
 			"${workspaceFolder}/zephyr/**": true,
+		},
+		"python.linting.enabled": false,
+		"python.linting.pylintEnabled": false,
+		"python.linting.mypyEnabled": false,
+		"python.linting.flake8Enabled": false,
+		"python.linting.pycodestyleEnabled": false,
+		"python.analysis.typeCheckingMode": "off",
+		"python.analysis.diagnosticMode": "openFilesOnly",
+		"workbench.colorCustomizations": {
+			"titleBar.border":"#ff0000",
 		}
 	}
 }

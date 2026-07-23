@@ -1,5 +1,35 @@
 # UART
 
+## Links
+
+* https://developer.toradex.com/software/development-resources/configuring-serial-port-debug-console-linuxu-boot/#mallowcarrierboard
+
+  See: Select your carrier board from the tabs below
+
+  ![](https://docs.toradex.com/117690-mallow_header.png)
+
+* https://developer.toradex.com/hardware/verdin-som-family/carrier-boards/mallow-carrier-board/
+
+  See: Debug UART Voltage levels
+
+* https://ftdichip.com/wp-content/uploads/2023/07/DS_TTL-232RG_CABLES.pdf
+
+## Soldered connection
+
+| FDICHIP | Mallow |
+| - | - |
+| GND black | square pad close to ETH |
+| RXD yello | UART3_TDX |
+| TXT orange | UART3_RXD |
+| RTS green | not connected |
+| CTS brown | not connected |
+| VCC red | not connected |
+
+* This is the UART of the M7 processor.
+* Baud rate is 115200.
+* `tio /dev/ttyUSB0`
+  * Exit with `<ctrl-t> q`
+
 ## Toradex Cable recommendation
 
 * https://developer.toradex.com/hardware/verdin-som-family/carrier-boards/mallow-carrier-board/
@@ -93,6 +123,6 @@ If you tell me:
 
 I can show the exact device-tree and firmware changes needed to get simultaneous A53 and M7 consoles working.
 
-[1]: https://docs.toradex.com/113122-mallow-carrier-board-datasheet.pdf?utm_source=chatgpt.com "Mallow Carrier Board"
-[2]: https://docs.zephyrproject.org/latest/boards/toradex/verdin_imx8mp/doc/index.html?utm_source=chatgpt.com "Verdin iMX8M Plus SoM — Zephyr Project Documentation"
-[3]: https://community.toradex.com/t/cortex-m-jtag-debugging-verdin-mallow/30168?utm_source=chatgpt.com "Cortex-M JTAG Debugging (Verdin/Mallow) - Technical Support - Toradex Community"
+[1]: https://docs.toradex.com/113873-mallow-carrier-board-datasheet.pdf "Mallow Carrier Board"
+[2]: https://docs.zephyrproject.org/latest/boards/toradex/verdin_imx8mp/doc/index.html "Verdin iMX8M Plus SoM — Zephyr Project Documentation"
+[3]: https://community.toradex.com/t/cortex-m-jtag-debugging-verdin-mallow/30168 "Cortex-M JTAG Debugging (Verdin/Mallow) - Technical Support - Toradex Community"
