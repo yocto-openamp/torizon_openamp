@@ -3,43 +3,44 @@
 import http.server
 import json
 import pathlib
+import sys
 import tarfile
 import urllib.parse
-
 
 PORT = 8000
 BIND = ""
 PROTOCOL = "HTTP/1.0"
-DIRECTORY_OF_THIS_FILE = pathlib.Path(__file__).parent
-DIRECTORY_REPO = DIRECTORY_OF_THIS_FILE.parent
-assert (DIRECTORY_REPO / ".git").is_dir()
-DIRECTORY_YOCTO_WORKDIR = DIRECTORY_REPO / "yocto-workdir"
-assert DIRECTORY_YOCTO_WORKDIR.is_dir()
-DIRECTORY_TEZI_IMAGES = DIRECTORY_YOCTO_WORKDIR / "build-torizon/deploy/images/"
+
+DIRECTORY_TEZI_IMAGES = "build-torizon/deploy/images/"
+DIRECTORY_YOCTO_WORKDIR = "yocto-workdir"
 
 ENDPOINT_IMAGE_LIST_JSON = "image_list.json"
 ENDPOINT_TORADEXLINUX_PNG = "toradexlinux.png"
 ENDPOINT_IMAGE_JSON = "image.json"
 
 
-def get_tezi_files() -> list[str]:
+def get_tezi_files(directory_tezi_images: pathlib.Path) -> list[str]:
     return [
-        f"{t.relative_to(DIRECTORY_TEZI_IMAGES)}"
-        for t in DIRECTORY_TEZI_IMAGES.glob("*/*.tar")
+        f"{t.relative_to(directory_tezi_images)}"
+        for t in directory_tezi_images.glob("*/*.tar")
         if t.name.endswith("-Tezi.tar")
     ]
 
 
-def make_image_list() -> dict[str, str | int | list]:
+def make_image_list(directory_tezi_images: pathlib.Path) -> dict[str, str | int | list]:
     return {
         "config_format": 1,
-        "images": [f + "/image.json" for f in get_tezi_files()],
+        "images": [f + "/image.json" for f in get_tezi_files(directory_tezi_images)],
     }
 
 
 class TeziRequestHandler(http.server.SimpleHTTPRequestHandler):
+    directory_tezi_images: pathlib.Path
+
     def _send_image_list(self, include_body: bool) -> None:
-        body = (json.dumps(make_image_list(), indent=2) + "\n").encode("utf-8")
+        body = (
+            json.dumps(make_image_list(self.directory_tezi_images), indent=2) + "\n"
+        ).encode("utf-8")
         self.send_response(200)
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(body)))
@@ -70,8 +71,7 @@ class TeziRequestHandler(http.server.SimpleHTTPRequestHandler):
         return False
 
     def _do_get_file(self, path: str) -> bool:
-        if path.startswith("/"):
-            path = path[1:]
+        path = path.removeprefix("/")
         parts = path.rpartition("/")
         if len(parts) != 3:
             return False
@@ -79,7 +79,7 @@ class TeziRequestHandler(http.server.SimpleHTTPRequestHandler):
         relative_tar, _, tar_member = parts
         # Example relative_tar: 'verdin-imx8mp/torizon-docker-verdin-imx8mp-Tezi.tar'
         # Example tar_member: 'image.json'
-        filename_tar = DIRECTORY_TEZI_IMAGES / relative_tar
+        filename_tar = self.directory_tezi_images / relative_tar
         if not filename_tar.is_file():
             self.send_error(404, f"Tar file not found: {filename_tar}")
             return True
@@ -88,7 +88,7 @@ class TeziRequestHandler(http.server.SimpleHTTPRequestHandler):
 
         if member_name == ENDPOINT_TORADEXLINUX_PNG:
             filename_png = (
-                DIRECTORY_OF_THIS_FILE / "resources" / ENDPOINT_TORADEXLINUX_PNG
+                self.directory_tezi_images / "resources" / ENDPOINT_TORADEXLINUX_PNG
             )
             content_png = filename_png.read_bytes()
             self.send_response(200)
@@ -166,12 +166,27 @@ class TeziRequestHandler(http.server.SimpleHTTPRequestHandler):
 
 
 def main() -> None:
+    cwd = pathlib.Path.cwd()
+    cwd_absolute = cwd.resolve().absolute()
+
+    if cwd.name != DIRECTORY_YOCTO_WORKDIR:
+        print(
+            f"ERROR: This program is expected to be started in the directory '{DIRECTORY_YOCTO_WORKDIR}' but not '{cwd_absolute.name}'!"
+        )
+        sys.exit(1)
+    assert cwd_absolute.is_dir()
+
+    directory_tezi_images = cwd_absolute / DIRECTORY_TEZI_IMAGES
+
     handler_class = TeziRequestHandler
     # protocol_version is a class attribute used by the handler.
     handler_class.protocol_version = PROTOCOL
+    handler_class.directory_tezi_images = directory_tezi_images
 
-    print(f"Start server on port:{PORT}, directory:{DIRECTORY_TEZI_IMAGES}")
-    print(f"Current tarfiles: {get_tezi_files()}")
+    print(f"Start server on port:{PORT}, directory:{directory_tezi_images}")
+    print(
+        f"Current tarfiles: {get_tezi_files(directory_tezi_images=directory_tezi_images)}"
+    )
 
     with http.server.ThreadingHTTPServer((BIND, PORT), handler_class) as server:
         server.serve_forever()

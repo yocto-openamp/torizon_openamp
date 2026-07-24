@@ -105,6 +105,10 @@ From repository root:
 
 ```bash
 python3 tezi-server/tezi_server.py
+
+# or
+
+uv run https://raw.githubusercontent.com/yocto-openamp/torizon_openamp/main/tezi-server/tezi_server.py
 ```
 
 ## Quick Checks
