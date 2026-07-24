@@ -48,8 +48,8 @@ $ eject /media/maerki/torizon
 See also [TEZI Server](tezi-server/tezi_server_README.md)
 
 ```bash
-$ cd yocto-workdir/build-torizon/deploy/images/verdin-imx8mp/
-$ python3 -m http.server 8080
+$ cd yocto-workdir
+$ uv run https://raw.githubusercontent.com/yocto-openamp/torizon_openamp/main/tezi-server/tezi_server.py
 ```
 
 ### Mallow: Boot into Recovery Mode
@@ -114,6 +114,6 @@ Successfully downloaded Toradex Easy Installer.
 
 * gvncviewer 192.168.11.1 
   * On VNC/monitor: Toradex Easy Installer
-    * Feeds: http://octoprobe4.local:8080/
+    * Feeds: http://octoprobe4.local:8000/
     * Select Torizon OS -> Install -> Yes -> I Accept
 

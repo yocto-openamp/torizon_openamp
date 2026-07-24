@@ -15,8 +15,24 @@ DIRECTORY_TEZI_IMAGES = "build-torizon/deploy/images/"
 DIRECTORY_YOCTO_WORKDIR = "yocto-workdir"
 
 ENDPOINT_IMAGE_LIST_JSON = "image_list.json"
-ENDPOINT_TORADEXLINUX_PNG = "toradexlinux.png"
 ENDPOINT_IMAGE_JSON = "image.json"
+
+ENDPOINT_TORADEXLINUX_PNG = "toradexlinux.png"
+# xxd -p -c 16 tezi-server/resources/toradexlinux.png | sed 's/../\\x&/g; s/^/    b"/; s/$/"/'
+TORADEXLINUX_PNG_BYTES = (
+    b"\x89\x50\x4e\x47\x0d\x0a\x1a\x0a\x00\x00\x00\x0d\x49\x48\x44\x52"
+    b"\x00\x00\x00\x28\x00\x00\x00\x28\x08\x06\x00\x00\x00\x8c\xfe\xb8"
+    b"\x6d\x00\x00\x00\x01\x73\x52\x47\x42\x01\xd9\xc9\x2c\x7f\x00\x00"
+    b"\x00\x04\x67\x41\x4d\x41\x00\x00\xb1\x8f\x0b\xfc\x61\x05\x00\x00"
+    b"\x00\x20\x63\x48\x52\x4d\x00\x00\x7a\x26\x00\x00\x80\x84\x00\x00"
+    b"\xfa\x00\x00\x00\x80\xe8\x00\x00\x75\x30\x00\x00\xea\x60\x00\x00"
+    b"\x3a\x98\x00\x00\x17\x70\x9c\xba\x51\x3c\x00\x00\x00\x3b\x49\x44"
+    b"\x41\x54\x58\xc3\xed\xce\x41\x0d\x00\x30\x08\x04\xb0\x63\xfe\xb5"
+    b"\xe0\x8f\xd7\x66\x83\x25\xad\x82\xd6\x74\x6e\x16\x3b\x59\x4e\x50"
+    b"\x50\x50\x50\x50\x50\x50\x50\x50\x50\x50\x50\x50\x50\x50\x50\x50"
+    b"\x50\x50\x50\x50\x50\xf0\xd7\xe0\x03\xa5\x21\x02\xf6\xfe\x88\xd6"
+    b"\x79\x00\x00\x00\x00\x49\x45\x4e\x44\xae\x42\x60\x82"
+)
 
 
 def get_tezi_files(directory_tezi_images: pathlib.Path) -> list[str]:
@@ -87,10 +103,13 @@ class TeziRequestHandler(http.server.SimpleHTTPRequestHandler):
         member_name = urllib.parse.unquote(tar_member)
 
         if member_name == ENDPOINT_TORADEXLINUX_PNG:
-            filename_png = (
-                self.directory_tezi_images / "resources" / ENDPOINT_TORADEXLINUX_PNG
-            )
-            content_png = filename_png.read_bytes()
+            if False:
+                filename_png = (
+                    self.directory_tezi_images / "resources" / ENDPOINT_TORADEXLINUX_PNG
+                )
+                content_png = filename_png.read_bytes()
+            else:
+                content_png = TORADEXLINUX_PNG_BYTES
             self.send_response(200)
             self.send_header("Content-Type", self.guess_type(member_name))
             self.send_header("Content-Length", str(len(content_png)))

@@ -8,8 +8,8 @@
 			"path": "yocto-workdir/layers/meta-productxy"
 		},
 		{
-			"name": "experiment_torizon_openamp_manifest",
-			"path": "../experiment_torizon_openamp_manifest"
+			"name": "torizon_openamp_manifest",
+			"path": "../torizon_openamp_manifest"
 		},
 		{
 			"name": "meta-toradex-torizon",
