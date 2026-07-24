@@ -12,7 +12,7 @@ git config --global user.email "email@example.com"
 git config --global user.name "Your Name"
 
 repo init \
-  -u https://github.com/hmaerki/experiment_torizon_openamp_manifest.git \
+  -u https://github.com/yocto-openamp/torizon_openamp_manifest.git \
   -b scarthgap-7.x.y \
   -m torizon/productxy.xml
 
