@@ -91,7 +91,7 @@ export PATH=~/bin:$PATH
 echo 'export PATH=~/bin:$PATH' >> ~/.bashrc
 ```
 
-### 3b) Create workspace and initialise manifest
+### 3b) Create workspace and initialize manifest
 
 ```bash
 mkdir -p ./yocto-workdir

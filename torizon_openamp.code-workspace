@@ -6,6 +6,18 @@
 		{
 			"name": "productxy-meta",
 			"path": "yocto-workdir/layers/meta-productxy"
+		},
+		{
+			"name": "experiment_torizon_openamp_manifest",
+			"path": "../experiment_torizon_openamp_manifest"
+		},
+		{
+			"name": "meta-toradex-torizon",
+			"path": "../meta-toradex-torizon"
+		},
+		{
+			"name": "toradex-manifest",
+			"path": "../toradex-manifest"
 		}
 	],
 	"settings": {
@@ -21,7 +33,7 @@
 		"python.analysis.typeCheckingMode": "off",
 		"python.analysis.diagnosticMode": "openFilesOnly",
 		"workbench.colorCustomizations": {
-			"titleBar.border":"#ff0000",
+			"titleBar.border": "#ff0000",
 		}
 	}
 }
