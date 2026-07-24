@@ -4,8 +4,6 @@
 * https://github.com/zephyrproject-rtos/zephyr/discussions/80011
 
 
-Change password from `torizon` to `t`: `ssh torizon@verdin-imx8mp-08910183.local`
-
 ## Applications tested
 
 See: recipes-images/images/torizon-docker.bbappend

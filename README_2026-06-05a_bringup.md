@@ -117,3 +117,22 @@ Successfully downloaded Toradex Easy Installer.
     * Feeds: http://octoprobe4.local:8000/
     * Select Torizon OS -> Install -> Yes -> I Accept
 
+### Connect with ssh
+
+```bash
+ssh torizon@verdin-imx8mp-08910183.local
+passwd
+# Change password from `torizon` to `t`
+ssh-copy-id torizon@verdin-imx8mp-08910183.local
+```
+
+### Allow ssh without password root@verdin-imx8mp-08910183.local
+
+```bash
+ssh torizon@verdin-imx8mp-08910183.local
+sudo su
+cp -r ~torizon/.ssh ~
+# logout
+# Test ssh to root
+ssh root@verdin-imx8mp-08910183.local
+```
