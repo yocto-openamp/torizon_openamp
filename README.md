@@ -27,7 +27,7 @@ Experiments with NXP i.MX 8M Plus Computer on Module, zephyr and openamp
 | 83 | [toradex](https://www.toradex.com/de/products/carrier-board/mallow-carrier-board) | 01611102 Mallow Carrier Board V1.1C | - |
 | 11 | [toradex](https://www.toradex.com/de/accessories/verdin-industrial-heatsink) | 23111100 Verdin Industrial Heatsink Type 1 V1.1A | - |
 | 25+29 | toradex | Freight+MWST | - |
-| 29 | [distrelec](https://ftdichip.com/products/ttl-232rg-vreg1v8-we/) | TTL-232RG-VREG1V8-WE USB-TTL SERIAL CABLE | 1.7V !!! |
+| 29 | [distrelec](https://ftdichip.com/products/ttl-232rg-vreg1v8-we/) | TTL-232RG-VREG1V8-WE USB-TTL SERIAL CABLE | 1.8V !!! |
 | 26 | [distrelec](https://www.st.com/en/evaluation-tools/nucleo-f722ze.html) | NUCLEO-F722ZE STM32 Nucleo-144 development board | [STM32F722ZET6](https://www.st.com/resource/en/datasheet/stm32f722ic.pdf) 216 MHz |
 
 
