@@ -11,6 +11,9 @@ cd ./yocto-workdir
 git config --global user.email "email@example.com"
 git config --global user.name "Your Name"
 
+git config --global user.email "buhtig.hans.maerki@ergoinfo.ch"
+git config --global user.name "Hans Maerki"
+
 repo init \
   -u https://github.com/yocto-openamp/torizon_openamp_manifest.git \
   -b scarthgap-7.x.y \
@@ -42,6 +45,10 @@ or
 
 ```bash
 source setup-environment
+
+# Verify if all layers selected
+bitbake-layers show-layers | grep meta-productxy
+bitbake-layers show-appends | grep torizon-docker
 
 time bitbake torizon-docker
 ```

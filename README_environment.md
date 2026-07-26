@@ -100,6 +100,9 @@ cd ./yocto-workdir
 git config --global user.email "email@example.com"
 git config --global user.name "Your Name"
 
+git config --global user.email "buhtig.hans.maerki@ergoinfo.ch"
+git config --global user.name "Hans Maerki"
+
 repo init \
   -u git://git.toradex.com/toradex-manifest.git \
   -b scarthgap-7.x.y \
