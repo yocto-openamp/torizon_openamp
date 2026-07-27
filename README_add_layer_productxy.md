@@ -1,4 +1,6 @@
-# Add a layer productxy
+# Implement a layer productxy
+
+**Only has to be done once to create the layer**
 
 ```bash
 docker run --rm -it \
