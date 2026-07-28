@@ -4,4 +4,4 @@
 
 ## Feature: Add power using USB PD
 
-## ..
+## R318 100k -> 1k
