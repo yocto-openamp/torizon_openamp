@@ -120,18 +120,15 @@ Successfully downloaded Toradex Easy Installer.
 ### Connect with ssh
 
 ```bash
-ssh torizon@verdin-imx8mp-08910183.local
-passwd
-# Change password from `torizon` to `t`
 ssh-copy-id torizon@verdin-imx8mp-08910183.local
+# PW: torizon
 ```
 
 ### Allow ssh without password root@verdin-imx8mp-08910183.local
 
 ```bash
 ssh torizon@verdin-imx8mp-08910183.local
-sudo su
-cp -r ~torizon/.ssh ~
+sudo cp -r ~torizon/.ssh ~root
 # logout
 # Test ssh to root
 ssh root@verdin-imx8mp-08910183.local
