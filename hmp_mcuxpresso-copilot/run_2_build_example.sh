@@ -104,6 +104,87 @@ cat > "$MAIN_C" <<'EOF'
 #include "fsl_device_registers.h"
 #include "rpmsg_lite.h"
 #include "rpmsg_ns.h"
+#include <stdint.h>
+
+/* Linux remoteproc resource table definitions. */
+#define RSC_VDEV (3U)
+#define VIRTIO_ID_RPMSG (7U)
+#define VIRTIO_RPMSG_F_NS (0U)
+#define FW_RSC_ADDR_ANY (0xFFFFFFFFU)
+
+struct resource_table_header
+{
+  uint32_t ver;
+  uint32_t num;
+  uint32_t reserved[2];
+  uint32_t offset[1];
+};
+
+struct fw_rsc_vdev
+{
+  uint32_t type;
+  uint32_t id;
+  uint32_t notifyid;
+  uint32_t dfeatures;
+  uint32_t gfeatures;
+  uint32_t config_len;
+  uint8_t status;
+  uint8_t num_of_vrings;
+  uint8_t reserved[2];
+};
+
+struct fw_rsc_vdev_vring
+{
+  uint32_t da;
+  uint32_t align;
+  uint32_t num;
+  uint32_t notifyid;
+  uint32_t reserved;
+};
+
+struct rpmsg_resource_table
+{
+  struct resource_table_header header;
+  struct fw_rsc_vdev vdev;
+  struct fw_rsc_vdev_vring vring0;
+  struct fw_rsc_vdev_vring vring1;
+};
+
+/* Keep this in a dedicated section that the linker script preserves. */
+__attribute__((section(".resource_table"), used))
+static const struct rpmsg_resource_table resources = {
+  .header = {
+    .ver = 1,
+    .num = 1,
+    .reserved = {0, 0},
+    .offset = {sizeof(struct resource_table_header)},
+  },
+  .vdev = {
+    .type = RSC_VDEV,
+    .id = VIRTIO_ID_RPMSG,
+    .notifyid = 0,
+    .dfeatures = (1U << VIRTIO_RPMSG_F_NS),
+    .gfeatures = 0,
+    .config_len = 0,
+    .status = 0,
+    .num_of_vrings = 2,
+    .reserved = {0, 0},
+  },
+  .vring0 = {
+    .da = FW_RSC_ADDR_ANY,
+    .align = 0x1000,
+    .num = 16,
+    .notifyid = 1,
+    .reserved = 0,
+  },
+  .vring1 = {
+    .da = FW_RSC_ADDR_ANY,
+    .align = 0x1000,
+    .num = 16,
+    .notifyid = 2,
+    .reserved = 0,
+  },
+};
 
 /* Keep sample shared memory in noinit so the section can be reused by remoteproc workflows. */
 #define SHMEM_SIZE (0x6000U)
