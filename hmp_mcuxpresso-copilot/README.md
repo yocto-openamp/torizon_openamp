@@ -28,10 +28,16 @@ This will clone the public RPMsg-Lite and MCUX SDK repositories into the prepare
 ```bash
 cd hmp_mcuxpresso-copilot
 
-mkdir -p /root/firmware
-echo /root/firmware > /sys/module/firmware_class/parameters/path
-cp build/mcux-example-minimal-cm7/rpmsg_lite_sample_MIMX8ML8_cm7.elf /root/firmware
-echo stop > /sys/class/remoteproc/remoteproc0/state
-echo rpmsg_lite_sample_MIMX8ML8_cm7.elf > /sys/class/remoteproc/remoteproc0/firmware
-echo start > /sys/class/remoteproc/remoteproc0/state
+sudo su
+./run_3_start-root.sh
+```
+
+```text
+[  323.668053] remoteproc remoteproc0: powering up imx-rproc
+[  323.668308] remoteproc remoteproc0: Booting fw image rpmsg_lite_sample_MIMX8ML8_cm7.elf, size 31956
+[  324.185378] rproc-virtio rproc-virtio.2.auto: assigned reserved memory node vdevbuffer@55400000
+[  324.295338] imx-rproc imx8mp-cm7: imx_rproc_kick: failed (0, err:-62)
+[  324.301804] virtio_rpmsg_bus virtio0: rpmsg host is online
+[  324.301890] rproc-virtio rproc-virtio.2.auto: registered virtio0 (type 7)
+[  324.301902] remoteproc remoteproc0: remote processor imx-rproc is now up
 ```
