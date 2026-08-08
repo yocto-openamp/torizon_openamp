@@ -41,3 +41,13 @@ sudo su
 [  324.301890] rproc-virtio rproc-virtio.2.auto: registered virtio0 (type 7)
 [  324.301902] remoteproc remoteproc0: remote processor imx-rproc is now up
 ```
+
+```bash
+ls  -1 /dev/re* /dev/rpmsg* /sys/bus/rpmsg/devices/
+/dev/remoteproc0
+/dev/rpmsg_ctrl0
+
+/sys/bus/rpmsg/devices/:
+virtio0.rpmsg_ctrl.0.0
+virtio0.rpmsg_ns.53.53
+```
