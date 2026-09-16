@@ -1,6 +1,9 @@
-# experiment_torizon_openamp
+# torizon_openamp
 
-Experiments with NXP i.MX 8M Plus Computer on Module, zephyr and openamp
+Minimal with NXP i.MX 8M Plus Computer on Module, zephyr and openamp
+
+
+## TODO: Obsolete: remove
 
 * [Install environment and build yocto](README_environment.md)
 * [Deploy to the board, Tezi Installer](README_deploy.md)
@@ -10,28 +13,6 @@ Experiments with NXP i.MX 8M Plus Computer on Module, zephyr and openamp
 * [A yocto layer for a productxy - assessment](README_add_layer_productxy.md)
 * [A yocto layer for a productxy - git](https://github.com/hmaerki/experiment_torizon_openamp_productxy)
 
-## References
-
-* [Toradex Verdin i.MX 8M Plus](https://www.toradex.com/de/computer-on-modules/verdin-arm-family/nxp-imx-8m-plus)
-* [Toradex Mallow carrier board](https://www.toradex.com/products/carrier-board/mallow-carrier-board)
-
-  * [Datasheet](https://docs.toradex.com/113873-mallow-carrier-board-datasheet.pdf)
-
-* [torizon/meta-toradex-torizon](https://github.com/torizon/meta-toradex-torizon)
-
-## BOM
-
-| CHF | Distributor/Link | Product | Notes |
-| -: | :-: | - | - |
-| 249 | [toradex](https://www.toradex.com/de/computer-on-modules/verdin-arm-family/nxp-imx-8m-plus) | 00631102 Verdin iMX8M Plus Quad 4GB IT V1.1C | - |
-| 83 | [toradex](https://www.toradex.com/de/products/carrier-board/mallow-carrier-board) | 01611102 Mallow Carrier Board V1.1C | - |
-| 11 | [toradex](https://www.toradex.com/de/accessories/verdin-industrial-heatsink) | 23111100 Verdin Industrial Heatsink Type 1 V1.1A | - |
-| 25+29 | toradex | Freight+MWST | - |
-| 29 | [distrelec](https://ftdichip.com/products/ttl-232rg-vreg1v8-we/) | TTL-232RG-VREG1V8-WE USB-TTL SERIAL CABLE | 1.8V !!! |
-| 26 | [distrelec](https://www.st.com/en/evaluation-tools/nucleo-f722ze.html) | NUCLEO-F722ZE STM32 Nucleo-144 development board | [STM32F722ZET6](https://www.st.com/resource/en/datasheet/stm32f722ic.pdf) 216 MHz |
-
-
-## Repositories involved
 
 * https://github.com/hmaerki/experiment_torizon_openamp @ Verdin-nxp-imx-8m-plus
 
@@ -47,14 +28,28 @@ Experiments with NXP i.MX 8M Plus Computer on Module, zephyr and openamp
 
   OpenAmp demos: [README_2026-06-06b_imx-m7-demos.md](https://github.com/hmaerki/experiment_torizon_openamp/blob/Verdin-nxp-imx-8m-plus/README_2026-06-06b_imx-m7-demos.md)
 
-* https://github.com/hmaerki/experiment_torizon_openamp_productxy
 
-  A Yocto layer which makes experiment_torizon_openamp to a product by adding software and yocto configuration.
+## Index
 
-* https://github.com/hmaerki/experiment_zephyr_isr_on_M7
+* Hardware
+  * [Overview](README_hardware_10_overview.md)
+  * [Bring up](README_hardware_20_bring_up.md)
+  * [Second ETH](README_hardware_30_second_ETH.md)
 
-  NUCLEO-F722ZE: Measure interrupt handling time
+* Yocto
+  * [Overview](README_yocto_10_overview.md)
+  * [Prepare build environment](README_yocto_20_prepare_build_environment.md)
+  * [How the productxy layer was added](README_yocto_30_add_layer.md)
+  * [Build](README_yocto_40_build.md)
+  * [Deploy - Tezi Installer](README_yocto_50_deploy_tezi.md)
+  * [Deploy - TorizonCoreBuilder](README_yocto_55_deploy_torizon-core-build.md)
 
-* https://github.com/hmaerki/response_time_analyzer
+* OpenAmp
+  * [Design](README_openamp_10_design.md)
+  * [Build zephyr application](README_openamp_20_zephyr_build.md)
+  * [Run application](README_openamp_30_zephyr_run.md)
 
-  Measure response time on two gpio using a RP2 and micropython.
+
+## Repositories involved
+
+See [https://github.com/yocto-openamp](https://github.com/yocto-openamp).

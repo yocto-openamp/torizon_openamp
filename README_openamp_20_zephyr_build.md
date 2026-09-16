@@ -1,0 +1,1 @@
+# OpenAmp - Build zephyr application
