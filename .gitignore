@@ -14,3 +14,4 @@ hmp_mcuxpresso-zephyr/.west/
 hmp_zephyr/build/
 hmp_zephyr/modules/
 hmp_zephyr/.west/
+tuf/

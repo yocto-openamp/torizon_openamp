@@ -17,3 +17,9 @@
 ## Root UART4 back to UART1/2 to be able to use tio from the SOM
 
 ## Add ground pads!
+
+## Add hole for ETH connector
+
+## Add space for ETH plug
+
+## Add solder pads to allow hw serial number
