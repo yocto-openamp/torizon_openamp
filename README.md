@@ -3,32 +3,6 @@
 Minimal with NXP i.MX 8M Plus Computer on Module, zephyr and openamp
 
 
-## TODO: Obsolete: remove
-
-* [Install environment and build yocto](README_environment.md)
-* [Deploy to the board, Tezi Installer](README_deploy.md)
-* [Bringung of the board](README_2026-06-05a_bringup.md)
-* [UART for linux console or M7](README_uart.md)
-* [Run the toradex provided open amp demos](README_2026-06-06b_imx-m7-demos.md)
-* [A yocto layer for a productxy - assessment](README_add_layer_productxy.md)
-* [A yocto layer for a productxy - git](https://github.com/hmaerki/experiment_torizon_openamp_productxy)
-
-
-* https://github.com/hmaerki/experiment_torizon_openamp @ Verdin-nxp-imx-8m-plus
-
-  Yocto
-
-  Board bringup: [README_2026-06-05a_bringup.md](https://github.com/hmaerki/experiment_torizon_openamp/blob/Verdin-nxp-imx-8m-plus/README_2026-06-05a_bringup.md)
-
-  Build instructions: [README_environment.md](https://github.com/hmaerki/experiment_torizon_openamp/blob/Verdin-nxp-imx-8m-plus/README_environment.md)
-
-  Add productxy layer: [README_add_layer_productxy.md](https://github.com/hmaerki/experiment_torizon_openamp/blob/Verdin-nxp-imx-8m-plus/README_add_layer_productxy.md)
-  
-  Deploy and start: [README_deploy.md](https://github.com/hmaerki/experiment_torizon_openamp/blob/Verdin-nxp-imx-8m-plus/README_deploy.md)
-
-  OpenAmp demos: [README_2026-06-06b_imx-m7-demos.md](https://github.com/hmaerki/experiment_torizon_openamp/blob/Verdin-nxp-imx-8m-plus/README_2026-06-06b_imx-m7-demos.md)
-
-
 ## Index
 
 * Hardware

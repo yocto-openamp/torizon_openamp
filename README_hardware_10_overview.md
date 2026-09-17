@@ -26,3 +26,4 @@
 | 25+29 | toradex | Freight+MWST | - |
 | 29 | [distrelec](https://ftdichip.com/products/ttl-232rg-vreg1v8-we/) | TTL-232RG-VREG1V8-WE USB-TTL SERIAL CABLE | 1.8V !!! |
 | 26 | [distrelec](https://www.st.com/en/evaluation-tools/nucleo-f722ze.html) | NUCLEO-F722ZE STM32 Nucleo-144 development board | [STM32F722ZET6](https://www.st.com/resource/en/datasheet/stm32f722ic.pdf) 216 MHz |
+| 50 | digitec | [Delock 95272](https://www.delock.de/produkt/95272/merkmale.html) | See [README_hardware_30_second_ETH](README_hardware_30_second_ETH)|
