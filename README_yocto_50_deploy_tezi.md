@@ -1,9 +1,11 @@
 # Yocto - Deploy - Tezi Installer
 
+Given a toradex board with a completly corrupt flash. This document show to use `USB Revovery Mode` to run `TEZI Easy Installer` and eventually flash the Yocto image.
+
 In this document:
 
 * Run Easy Installer
-* Flash a yocto image
+* Flash a Yocto image
 
 ## Links
 
