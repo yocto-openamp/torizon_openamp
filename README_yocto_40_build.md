@@ -56,4 +56,12 @@ bitbake-layers show-appends | grep torizon-docker
 time bitbake torizon-docker
 ```
 
+Do not edit, commit, switch branches, or synchronize layer repositories while
+BitBake is running. Torizon records layer Git revisions and their modified state
+in the OSTree image metadata.
+
+If `do_image_ostreecommit` reports a changed basehash after a layer was committed
+during the build, let BitBake exit, finish the repository changes, then run
+`bitbake torizon-docker` again. A fresh invocation parses the current revisions
+
 After about 1.5h: The Easy Installer image is written below `build-torizon/deploy/images/verdin-imx8mp/`.
