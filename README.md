@@ -8,6 +8,7 @@ Minimal with NXP i.MX 8M Plus Computer on Module, zephyr and openamp
 
 * Hardware
   * [Overview](README_hardware_10_overview.md)
+  * [SHT40 temperature and humidity sensors](README_hardware_20_sht40.md)
   * [Second ETH](README_hardware_30_second_ETH.md)
   * [Networking](README_hardware_40_networking.md)
 
