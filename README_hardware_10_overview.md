@@ -5,7 +5,7 @@
 * [Toradex Verdin i.MX 8M Plus](https://www.toradex.com/de/computer-on-modules/verdin-arm-family/nxp-imx-8m-plus)
 * [Toradex Mallow carrier board](https://www.toradex.com/products/carrier-board/mallow-carrier-board)
 
-  * [Datasheet](https://docs.toradex.com/113873-mallow-carrier-board-datasheet.pdf)
+  * [Datasheet v1.10](https://docs.toradex.com/116791-mallow_carrier_board_datasheet.pdf)
 
 
 ## Mallow Breakout Board

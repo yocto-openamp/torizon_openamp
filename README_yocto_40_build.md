@@ -65,3 +65,17 @@ during the build, let BitBake exit, finish the repository changes, then run
 `bitbake torizon-docker` again. A fresh invocation parses the current revisions
 
 After about 1.5h: The Easy Installer image is written below `build-torizon/deploy/images/verdin-imx8mp/`.
+
+### FAQ: Force device tree rebuild
+
+```bash
+# Clean everything and rebuild
+bitbake -c cleanall device-tree-overlays
+bitbake device-tree-overlays
+```
+
+### FAQ: Do some cleanup and build image
+
+```bash
+/workdir/torizon/layers/meta-productxy/scripts/fix_sprintdfiff
+```

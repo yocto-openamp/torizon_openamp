@@ -136,6 +136,21 @@ $ ostree remote refs aktualizr-remote
 error: While fetching https://dgw.torizon.io/treehub/summary.sig: [58] Problem with the local SSL certificate
 ```
 
+### Rollback
+
+```bash
+ostree admin status  
+* torizon 6f7eb08bc0ab5c187d6a12e7786e45da6f26c9e5430cfcca67d3ac8d0eb6a4dd.0
+    Version: 7.7.0-devel-20261114110136+build.0
+    origin refspec: tcbuilder:6f7eb08bc0ab5c187d6a12e7786e45da6f26c9e5430cfcca67d3ac8d0eb6a4dd
+  torizon b3734ebe1b599b31fbff9333c2d925aab3b1cd2c83a62bd10a7d2580556e9471.2 (rollback)
+    Version: 7.7.0-devel-20261113233414+build.0
+    origin refspec: tcbuilder:b3734ebe1b599b31fbff9333c2d925aab3b1cd2c83a62bd10a7d2580556e9471
+
+# torizon b3734... (rollback)
+ostree admin deploy b3734ebe1b599b31fbff9333c2d925aab3b1cd2c83a62bd10a7d2580556e9471
+```
+
 ## Sequence of an update from the cloud
 
 ```
